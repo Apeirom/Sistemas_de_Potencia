@@ -65,8 +65,6 @@ def simular_falta_faseB(id_linha, id_carga):
         # Se for aterrada, o neutro da carga está cravado no terra da fonte
         V_nn = complex(0, 0)
     
-    print(f"d) Deslocamento de Neutro (V_N'N): {rect_to_polar_str(V_nn)} V\n")
-
     # 3. a) Correntes de Linha (Ia, Ib, Ic)
     Ia = (Van - V_nn) * Y_ramo
     Ib = complex(0, 0) # Fase B rompida!
@@ -79,11 +77,6 @@ def simular_falta_faseB(id_linha, id_carga):
 
     # 4. c) Corrente de Neutro na Fonte (In)
     In = Ia + Ib + Ic
-    print(f"c) Corrente de Neutro de Retorno:  {rect_to_polar_str(In)} A")
-    if ligacao == 'isolada':
-        print("   (Note que é 0 A porque o sistema é isolado e I_c = -I_a)\n")
-    else:
-        print("   (Note que a corrente flui pelo terra pois o sistema é aterrado)\n")
 
     # 5. b) Tensões de Fase na Carga (V_A'N', V_B'N', V_C'N')
     # Tensão é a corrente que passa pela carga multiplicada pela sua impedância
@@ -98,6 +91,16 @@ def simular_falta_faseB(id_linha, id_carga):
     print(f"   Va'n': {rect_to_polar_str(Van_carga / 1000)} kV")
     print(f"   Vb'n': {rect_to_polar_str(Vbn_carga / 1000)} kV")
     print(f"   Vc'n': {rect_to_polar_str(Vcn_carga / 1000)} kV\n")
+
+    print(f"c) Corrente de Neutro de Retorno:  {rect_to_polar_str(In)} A")
+    if ligacao == 'isolada':
+        print("   (Note que é 0 A porque o sistema é isolado e I_c = -I_a)\n")
+    else:
+        print("   (Note que a corrente flui pelo terra pois o sistema é aterrado)\n")
+
+
+    print(f"d) Deslocamento de Neutro (V_N'N): {rect_to_polar_str(V_nn)} V\n")
+
 
     # 6. e) Potências Complexas na Fonte (S = V * I*)
     S_FA = Van * Ia.conjugate()
