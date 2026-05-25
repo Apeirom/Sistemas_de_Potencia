@@ -58,9 +58,9 @@ Z_At   = complex(0.1, 10.0)
 # 3. MOTOR DE CÁLCULO (SISTEMA TOTALMENTE DESEQUILIBRADO)
 # ==========================================
 def analisar_sistema_c4(id_fonte):
-    print("="*80)
+    print("="*60)
     print(f" ANÁLISE DE DESEQUILÍBRIO TOTAL: {id_fonte} - L2 - C4")
-    print("="*80)
+    print("="*60)
 
     # Captura das tensões da fonte
     Va, Vb, Vc = fontes[id_fonte]['Va'], fontes[id_fonte]['Vb'], fontes[id_fonte]['Vc']
